@@ -5,23 +5,23 @@ from .serializers import *
 # Create your views here.
 
 class CustomUserView(ModelViewSet):
-    queryset = CustomUser
+    queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
 
 class AuthorView(ModelViewSet):
-    queryset = Author
+    queryset = Author.objects.all()
     serializer_class = AuthorSerializer
 
 class CategoryView(ModelViewSet):
-    queryset = Category
+    queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
 class BookView(ModelViewSet):
-    queryset = Book
+    queryset = Book.objects.all()
     serializer_class = BookSerializer
 
 class LoanView(ModelViewSet):
-    queryset = Loan
+    queryset = Loan.objects.all()
     serializer_class = LoanSerializer
 
     def create(self, request, *args, **kwargs):

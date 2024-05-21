@@ -8,7 +8,6 @@ class CustomUserSerializer(ModelSerializer):
         many = True
     
 class AuthorSerializer(ModelSerializer):
-    userFK = CustomUserSerializer
     class Meta:
         model = Author
         fields = '__all__'
@@ -21,7 +20,7 @@ class CategorySerializer(ModelSerializer):
         many = True
 
 class BookSerializer(ModelSerializer):
-    author = AuthorSerializer
+    author = AuthorSerializer()
     categoryFK = SlugRelatedField(
         many = True,
         read_only = True,
@@ -33,8 +32,8 @@ class BookSerializer(ModelSerializer):
         many = True
 
 class LoanSerializer(ModelSerializer):
-    userFK = CustomUserSerializer
-    bookFK = BookSerializer
+    userFK = CustomUserSerializer()
+    bookFK = BookSerializer()
     class Meta:
         model = Loan
         fields = '__all__'

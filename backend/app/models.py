@@ -17,7 +17,7 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     def __str__(self):
         return self.email
@@ -26,6 +26,9 @@ class Author(models.Model):
     userFK = models.OneToOneField(CustomUser, related_name="CustomUserAuthor", on_delete=models.CASCADE)
     photo = models.TextField()
     biography = models.TextField()
+    
+    def __str__(self):
+        return self.userFK.email
 
 class Category(models.Model):
     name = models.CharField(max_length=120, null=False, blank=False)
@@ -47,7 +50,7 @@ BOOK_STATUS = [
 class Book(models.Model):
     title = models.CharField(max_length=120, null=False, blank=False)
     image = models.TextField(null=False, blank=False)
-    description = models.TimeField()
+    description = models.TextField()
     pages = models.IntegerField()
     platform = models.CharField(max_length=60, choices=BOOK_PLATFORM)
     edition = models.CharField(max_length=120)
