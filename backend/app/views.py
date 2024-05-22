@@ -7,6 +7,10 @@ from .serializers import *
 class CustomUserView(ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
+    
+    def get_queryset(self):
+        myUser = CustomUser.objects.get(id = self.request.user.id)
+        return myUser
 
 class AuthorView(ModelViewSet):
     queryset = Author.objects.all()
@@ -25,7 +29,12 @@ class LoanView(ModelViewSet):
     serializer_class = LoanSerializer
 
     def create(self, request, *args, **kwargs):
-        userId = self.request.user.id
-        userHasLoans = Loan.objects.filter(userFK = userId).filter(deliverDate__gte = datetime.date() or deliverDate__is)
+        try:
+            userId = 1
+            print(datetime.date.today())
+            userHasLoans = Loan.objects.filter(userFK = userId).count();
+            print(userHasLoans)
+        except Loan.DoesNotExist:
+            print("nenhum registro")
 
         return super().create(request, *args, **kwargs)

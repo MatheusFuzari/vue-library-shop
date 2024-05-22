@@ -1,7 +1,8 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-from django.utils.timezone import timedelta
+import datetime
+from django.utils import timezone
 from .manager import UserManager
 
 
@@ -68,7 +69,7 @@ class Book(models.Model):
 class Loan(models.Model):
     userFK = models.ForeignKey(CustomUser, related_name="userLoan", on_delete=models.CASCADE, null=False, blank=False)
     bookFK = models.ForeignKey(Book, related_name="bookLoan", on_delete=models.CASCADE, null=False, blank=True)
-    loanDate = models.DateField(auto_now_add=True)
+    loanDate = models.DateField(null=True, blank=True)
     expectedDate = models.DateField(null=True, blank=True)
     deliverDate = models.DateField(null=True, blank=True)
 
@@ -76,5 +77,6 @@ class Loan(models.Model):
         return self.bookFK.title
 
     def save(self, *args, **kwargs):
-        self.expectedDate = self.loanDate + timedelta(weeks=2)
+        self.loanDate = timezone.now().date()
+        self.expectedDate = self.loanDate + timezone.timedelta(weeks=2)
         super(Loan, self).save(*args, **kwargs)

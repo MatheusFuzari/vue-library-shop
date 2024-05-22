@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer, SlugRelatedField
+from rest_framework.serializers import ModelSerializer, SlugRelatedField, PrimaryKeyRelatedField
 from .models import *
 
 class CustomUserSerializer(ModelSerializer):
@@ -8,6 +8,7 @@ class CustomUserSerializer(ModelSerializer):
         many = True
     
 class AuthorSerializer(ModelSerializer):
+    userFK = CustomUserSerializer()
     class Meta:
         model = Author
         fields = '__all__'
@@ -28,12 +29,12 @@ class BookSerializer(ModelSerializer):
     )
     class Meta:
         model = Book
-        fields = '__all__'
+        fields = '__all__' 
         many = True
 
 class LoanSerializer(ModelSerializer):
-    userFK = CustomUserSerializer()
-    bookFK = BookSerializer()
+    #userFK = CustomUserSerializer()
+    #bookFK = BookSerializer()
     class Meta:
         model = Loan
         fields = '__all__'
