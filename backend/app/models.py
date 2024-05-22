@@ -78,3 +78,18 @@ class Loan(models.Model):
     def save(self, *args, **kwargs):
         self.expectedDate = self.loanDate + timedelta(weeks=2)
         super(Loan, self).save(*args, **kwargs)
+
+
+class Relation(models.Model):
+    name = models.TextField()
+    
+    def __str__(self):
+        return self.name
+
+class Teste(models.Model):
+    photo = models.TextField()
+    biography = models.TextField()
+    relationFK = models.ForeignKey(Relation, related_name="RelationFK", on_delete=models.CASCADE, null=False, blank=False)
+
+    def __str__(self):
+        return self.biography

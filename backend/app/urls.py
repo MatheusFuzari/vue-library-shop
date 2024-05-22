@@ -9,5 +9,7 @@ router.register('authors', AuthorView)
 router.register('category', CategoryView)
 router.register('book', BookView)
 router.register('loan', LoanView)
+router.register('teste', TesteView)
+router.register('relation', RelationView)
 
 urlpatterns = router.urls
