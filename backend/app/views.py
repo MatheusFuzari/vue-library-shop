@@ -38,7 +38,6 @@ class ReadWriteSerializerMixin(object):
 class CustomUserView(ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
-    authentication_classes = (IsAuthenticated, )
 
     def get_queryset(self):
         user = self.request.user
