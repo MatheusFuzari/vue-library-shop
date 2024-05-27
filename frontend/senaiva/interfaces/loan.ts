@@ -1,15 +1,24 @@
 import { type User } from "./user";
 import { type Book } from "./book";
 
-export interface Loan{
+export interface Loan {
+    id: number;
     userFK: User;
-    bookFK: Book;
+    bookFK: Array<Book>;
     loanDate: string;
     expectedDate: string;
-    deliverDate: string|null;
+    deliverDate: string | null;
 }
 
-export interface LoanBody{
+export interface LoanBody {
     userFK: string;
-    bookFK: string;
+    bookFK: Array<string>;
+}
+
+export interface LoanUpdate {
+    userFK: number;
+    bookFK: Array<string>;
+    loanDate: string;
+    expectedDate: string;
+    deliverDate: string;
 }

@@ -4,7 +4,7 @@ from .views import *
 
 router = DefaultRouter()
 
-router.register('customUser', CustomUserView)
+router.register('custom-user', CustomUserView)
 router.register('authors', AuthorView)
 router.register('category', CategoryView)
 router.register('book', BookView)

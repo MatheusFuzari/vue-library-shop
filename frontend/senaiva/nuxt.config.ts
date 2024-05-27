@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     typeCheck: true
   },
 
-  css: ['~/assets/css/main.css'],
+  css: ['~/assets/css/main.css', 'primevue/resources/themes/aura-light-green/theme.css', 'primeicons/primeicons.css'],
 
   postcss: {
     plugins: {
@@ -17,8 +17,14 @@ export default defineNuxtConfig({
 
   modules: [
     "@sidebase/nuxt-auth",
+    "nuxt-primevue",
+    "@pinia/nuxt",
   ],
-
+  primevue: {
+    components: {
+      include: ['Carousel', 'Tag', 'Button', 'Toast', 'ProgressSpinner', 'Message', 'Rating', 'Listbox', 'InputText', 'FloatLabel', 'SelectButton', 'TextArea', 'Calendar', 'InputNumber']
+    }
+  },
   auth: {
     baseURL: 'http://localhost:8000',
     provider: {
@@ -26,7 +32,7 @@ export default defineNuxtConfig({
       endpoints: {
         signIn: { path: '/token/login', method: 'post' },
         signOut: { path: '/token/logout', method: 'post' },
-        getSession: { path: '/customUser', method: 'get' },
+        getSession: { path: '/custom-user', method: 'get' },
       },
       token: { signInResponseTokenPointer: '/auth_token', type: 'Token' },
       pages: { login: '/login' },

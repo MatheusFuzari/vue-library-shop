@@ -13,7 +13,7 @@ export enum STATUS {
     'CANCELADO' = 'CANCELADO'
 }
 
-export interface Book{
+export interface Book {
     id: number;
     title: string;
     image: string;
@@ -24,8 +24,23 @@ export interface Book{
     author: Author;
     publish_year: string;
     rating: number;
-    price: number;
+    price: string;
     status: string;
     qntInStock: number;
     categoryFK: Array<BookCategory>
+}
+
+export interface BookBody {
+    title: string;
+    image: string;
+    description: string;
+    pages: number;
+    platform: string;
+    edition: string;
+    author: number;
+    publish_year: string;
+    rating: number;
+    price: number;
+    qntInStock: number;
+    categoryFK: Array<Category>
 }
