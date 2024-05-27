@@ -1,1 +1,1 @@
-web: gunicorn sge.wsgi
+web: gunicorn senaiva.wsgi
