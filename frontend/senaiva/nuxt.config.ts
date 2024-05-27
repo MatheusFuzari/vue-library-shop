@@ -26,7 +26,7 @@ export default defineNuxtConfig({
     }
   },
   auth: {
-    baseURL: 'http://somativa-production.up.railway.app',
+    baseURL: 'https://somativa-production.up.railway.app',
     provider: {
       type: 'local',
       endpoints: {
