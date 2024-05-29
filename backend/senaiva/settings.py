@@ -37,7 +37,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost',
     'http://127.0.0.1',
-    "https://somativa-production.up.railway.app/",
+    "https://somativa-production.up.railway.app/*",
+    "https://somativa-production.up.railway.app",
     "https://somativa-rln61iwpm-matheus-fuzaris-projects.vercel.app/"
 ]
 
