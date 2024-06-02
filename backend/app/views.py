@@ -50,13 +50,11 @@ class AuthorView(ReadWriteSerializerMixin, ModelViewSet):
     queryset = Author.objects.all()
     write_serializer_class = AuthorWriteSerializer
     read_serializer_class = AuthorReadSerializer
-    authentication_classes = (IsAuthenticated, )
 
 
 class CategoryView(ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    authentication_classes = (IsAuthenticated, )
 
 
 class BookView(ReadWriteSerializerMixin, ModelViewSet):
@@ -69,7 +67,6 @@ class LoanView(ReadWriteSerializerMixin, ModelViewSet):
     queryset = Loan.objects.all()
     write_serializer_class = LoanWriteSerializer
     read_serializer_class = LoanReadSerializer
-    authentication_classes = (IsAuthenticated, )
 
     def create(self, request, *args, **kwargs):
         try:
